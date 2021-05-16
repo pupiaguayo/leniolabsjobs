@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 // styles Header Page
 export const Header = styled.header`
   color: white;
@@ -21,7 +21,9 @@ export const Header = styled.header`
 const HeaderView = () => {
   return (
     <Header>
-      <h1>Leniolabs Jobs</h1>
+      <Link to="/" style={{ textDecoration: "none" }}>
+        <h1>LenioJobs</h1>
+      </Link>
     </Header>
   );
 };

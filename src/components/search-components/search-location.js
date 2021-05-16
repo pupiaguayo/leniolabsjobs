@@ -10,6 +10,9 @@ export const Sidebar = styled.div`
   display: flex;
   flex-direction: column;
 
+  .form-fulltime label {
+    margin-left: 0.8vw;
+  }
   .form-location {
     margin-top: 1.5vh;
   }
@@ -41,14 +44,14 @@ export const Sidebar = styled.div`
 const SearchLocation = () => {
   return (
     <Sidebar>
-      <form action="">
+      <form action="" className="form-fulltime">
         <input type="checkbox" />
         <label htmlFor="">Full Time</label>
       </form>
 
       <form className="form-location">
         <label htmlFor="">LOCATION</label>
-        <input type="text" placeholder="Ciudad, Estado o CP" />
+        <input type="text" placeholder="City, State, zip code or Country" />
       </form>
 
       <form className="form-cities">
