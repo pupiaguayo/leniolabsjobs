@@ -2,30 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 import reportWebVitals from "./reportWebVitals";
-import styled from "styled-components";
-
-export const ButtonCards = styled.button`
-  height: auto;
-  width: auto;
-  font-size: 1em;
-  border-radius: 0.5em;
-  margin-right: 1vw;
-  padding: 4px;
-  background-color: #eebe5b;
-  border: 1px solid #283351;
-  color: #283351;
-  font-weight: bold;
-  &:hover {
-    transition: 1s ease-in-out;
-    background: #283351;
-    color: #eebe5b;
-    cursor: pointer;
-  }
-`;
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

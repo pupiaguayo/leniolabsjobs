@@ -1,6 +1,6 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-
 import { BiWorld } from "react-icons/bi";
 import { FiClock } from "react-icons/fi";
 // styles container Cards
@@ -49,6 +49,22 @@ export const TextJob = styled.div`
 // styles container Cards
 
 const JobsInfo = () => {
+  const { jobId } = useParams();
+  console.log(jobId);
+  const [description, setDescription] = useState([]);
+  const PROXY_PATH = "https://cors-anywhere.herokuapp.com/";
+  const BASE_PATH = `https://jobs.github.com/positions/${jobId}.json`;
+  const onlyJob = async () => {
+    const dataJob = await fetch(`${PROXY_PATH}${BASE_PATH}`);
+    const oneJobData = await dataJob.json();
+    console.log(oneJobData);
+    setDescription(oneJobData.location);
+  };
+  // API CALL / SET REDUX
+  useEffect(() => {
+    onlyJob();
+  }, []);
+
   return (
     <TextJob>
       <h2>Frontend Engineer</h2>
@@ -68,23 +84,7 @@ const JobsInfo = () => {
       <article>
         {/*Job Description */}
         <h3>Description</h3>
-        <p>
-          En Leniolabs colaboramos en el desarrollo de software de nuestros
-          clientes que se encuentran principalmente en Estados Unidos. Nuestra
-          experiencia se basa fuertemente en el desarrollo frontend con
-          lenguajes como Javascript, React y Angular. También trabajamos algunos
-          proyectos en backend con lenguajes como Ruby on Rails, Python
-          (classifiers y big data structures) y NodeJS.
-        </p>
-        <p>
-          Tenemos operaciones en Argentina, Chile, España y USA. Los equipos de
-          desarrollo están mayormente ubicados en Argentina y Chile.
-        </p>
-        <p>
-          Trabajamos con equipos distribuidos de manera remota y colaborativa,
-          utilizando herramientas como Slack, Zoom, Google Meet, Jira, entre
-          otras.
-        </p>
+        <p> {description}</p>
         {/* Job Description*/}
 
         {/*Hiring Process */}

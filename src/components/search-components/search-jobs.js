@@ -62,10 +62,14 @@ export const SearchBar = styled.section`
 // styles SearchBar and Container SearchBar
 
 const SearchJobs = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert("Function is temporarily unavailable");
+  };
   return (
     <SearchBar>
       <img src="https://i.ibb.co/SBTKK24/leni-rocket2.png" alt="" />
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           className="inputJobs"

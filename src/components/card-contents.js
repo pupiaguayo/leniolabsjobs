@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { ButtonCards } from "../index";
+import { ButtonCards } from "../common/index";
 // styles contents Cards
 export const Cards = styled.div`
   color: #fafafa;
@@ -30,30 +29,26 @@ export const Cards = styled.div`
   }
 
   .infoJob h2 {
-    font-size: 1.5em;
+    font-size: 1.2em;
     width: 100%;
     margin-bottom: 2vh;
-    letter-spacing: 1px;
   }
   img {
     height: 10vh;
   }
 `;
 // styles contents Cards
-
-const CardContents = () => {
+const CardContents = (job) => {
   return (
-    <Link to="/jobs" style={{ textDecoration: "none" }}>
-      <Cards>
-        <img src="https://i.ibb.co/StBB1Lb/leniologo.png" />
-        <div className="infoJob">
-          <h2>Frontend Engineer</h2>
-          <ButtonCards>Full Time</ButtonCards>
-          <p>Los angeles</p>
-          <p>6 days ago</p>
-        </div>
-      </Cards>
-    </Link>
+    <Cards>
+      <img src="https://i.ibb.co/StBB1Lb/leniologo.png" alt="Logo LenioJobs" />
+      <div className="infoJob">
+        <h2>{job.title}</h2>
+        <ButtonCards>Full Time</ButtonCards>
+        <p>{job.location}</p>
+        <p>{job.time}</p>
+      </div>
+    </Cards>
   );
 };
 export default CardContents;

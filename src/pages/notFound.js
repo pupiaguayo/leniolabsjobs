@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ButtonCards } from "../index";
+import { ButtonCards } from "../common/index";
 import { Link } from "react-router-dom";
 import { TiArrowLeftThick } from "react-icons/ti";
 // styles Page ERROR
@@ -26,7 +26,7 @@ export const ErrorPage = styled.div`
     margin-bottom: 1vh;
   }
   p {
-    margin-bottom: 1.9vh;
+    margin-bottom: 2.5vh;
   }
 `;
 function PageError() {
@@ -41,7 +41,7 @@ function PageError() {
       <Link to="/">
         <ButtonCards>
           {" "}
-          <TiArrowLeftThick /> Back to Home
+          <TiArrowLeftThick className="a" /> Back to Home
         </ButtonCards>
       </Link>
     </ErrorPage>

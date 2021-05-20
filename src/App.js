@@ -20,7 +20,7 @@ function App() {
         <HeaderView />
         <Switch>
           <Route exact path="/" component={PageHome} />
-          <Route exact path="/jobs" component={JobSelect} />
+          <Route exact path="/jobs/:jobId" component={JobSelect} />
           <Route component={PageError} />
         </Switch>
         <FooterView />

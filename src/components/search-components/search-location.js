@@ -42,6 +42,10 @@ export const Sidebar = styled.div`
   }
 `;
 const SearchLocation = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert("Function is temporarily unavailable");
+  };
   return (
     <Sidebar>
       <form action="" className="form-fulltime">
@@ -49,7 +53,7 @@ const SearchLocation = () => {
         <label htmlFor="">Full Time</label>
       </form>
 
-      <form className="form-location">
+      <form className="form-location" onSubmit={handleSubmit}>
         <label htmlFor="">LOCATION</label>
         <input type="text" placeholder="City, State, zip code or Country" />
       </form>
@@ -57,20 +61,16 @@ const SearchLocation = () => {
       <form className="form-cities">
         <label className="locale-label" htmlFor="Buenos Aires">
           <input type="radio" />
-          <span>Buenos Aires</span>
+          <span>Remote</span>
         </label>{" "}
         <label className="locale-label" htmlFor="Atlanta">
           <input type="radio" />
-          <span>Atlanta</span>
+          <span>Berlin</span>
         </label>{" "}
         <label className="locale-label" htmlFor="Santiago">
           <input type="radio" />
-          <span>Santiago </span>
+          <span>USA </span>
         </label>{" "}
-        <label className="locale-label" htmlFor="Berlin">
-          <input type="radio" />
-          <span>Berlin</span>
-        </label>
       </form>
     </Sidebar>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { TiArrowLeftThick } from "react-icons/ti";
-import { ButtonCards } from "../index";
+import { ButtonCards } from "../common/index";
 export const Sidebar = styled.div`
   color: white;
   height: auto;
@@ -38,7 +38,7 @@ const HowToApply = () => {
       <Link to="/">
         <ButtonCards>
           {" "}
-          <TiArrowLeftThick /> Back to Search
+          <TiArrowLeftThick className="a" /> Back to Search
         </ButtonCards>
       </Link>
       <p className="title">How to apply</p>
