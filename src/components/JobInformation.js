@@ -58,7 +58,7 @@ const JobsInfo = () => {
     const dataJob = await fetch(`${PROXY_PATH}${BASE_PATH}`);
     const oneJobData = await dataJob.json();
     console.log(oneJobData);
-    setDescription(oneJobData.location);
+    setDescription(oneJobData.description);
   };
   // API CALL / SET REDUX
   useEffect(() => {
@@ -84,7 +84,7 @@ const JobsInfo = () => {
       <article>
         {/*Job Description */}
         <h3>Description</h3>
-        <p> {description}</p>
+        <p> {description}¿</p>
         {/* Job Description*/}
 
         {/*Hiring Process */}
