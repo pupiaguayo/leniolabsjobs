@@ -3,7 +3,6 @@ import styled from "styled-components";
 import CardContents from "./card-contents.js";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
-import { setJobs } from "../redux/actions/jobsActions";
 import { Link } from "react-router-dom";
 // styles container Cards
 export const Card = styled.div`
@@ -50,25 +49,34 @@ export const Card = styled.div`
 
 const CardJobs = () => {
   // API CALL / SET REDUX
+  const dispatch = useDispatch();
   const PROXY_PATH = "https://cors-anywhere.herokuapp.com/";
   const BASE_PATH = "https://jobs.github.com/positions.json?search=frontend";
-
-  const jobs = useSelector((state) => state);
-  const dispatch = useDispatch();
-
+  const jobListLocation = useSelector((state) => state.jobListLocation);
+  const jobListName = useSelector((state) => state.jobListName);
+  const jobList = useSelector((state) => {
+    if (jobListLocation !== "" && jobListName.length === 0) {
+      return jobListLocation;
+    }
+    if (jobListName.length > 0) {
+      return jobListName;
+    }
+    return state.jobList;
+  });
   const obtenerJobs = async () => {
     const data = await fetch(`${PROXY_PATH}${BASE_PATH}`);
     const elementos = await data.json();
-    dispatch(setJobs(elementos));
+    dispatch({
+      type: "SET_LIST_JOBS",
+      payload: elementos,
+    });
   };
   // API CALL / SET REDUX
   useEffect(() => {
     obtenerJobs();
-  }, []);
-  console.log(jobs);
+  }, [dispatch]);
 
   // Function React Paginate
-  const allJobs = useSelector((state) => state.Jobs.jobs);
   const page = 5;
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -77,9 +85,9 @@ const CardJobs = () => {
   }
 
   const offset = currentPage * page;
-  const pageCount = Math.ceil(allJobs.length / page);
+  const pageCount = Math.ceil(jobList.length / page);
 
-  const PageData = allJobs.slice(offset, offset + page).map((job) => {
+  const PageData = jobList.slice(offset, offset + page).map((job) => {
     return (
       <Link to={`/Jobs/${job.id}`} style={{ textDecoration: "none" }}>
         <CardContents

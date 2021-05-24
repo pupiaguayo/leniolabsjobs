@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { BiWorld } from "react-icons/bi";
 import { FiClock } from "react-icons/fi";
+
 // styles container Cards
 export const TextJob = styled.div`
   color: white;
@@ -11,7 +12,6 @@ export const TextJob = styled.div`
   grid-column: 2/5;
   display: flex;
   flex-wrap: wrap;
-
   h2,
   h3 {
     font-size: 2.5em;
@@ -41,7 +41,8 @@ export const TextJob = styled.div`
   ul {
     margin-top: 2vh;
   }
-  ul li {
+  ul li,
+  a {
     margin-top: 1.5vh;
     color: #eebe5b;
   }
@@ -50,15 +51,19 @@ export const TextJob = styled.div`
 
 const JobsInfo = () => {
   const { jobId } = useParams();
-  console.log(jobId);
-  const [description, setDescription] = useState([]);
+  const [description, setDescription] = useState({});
   const PROXY_PATH = "https://cors-anywhere.herokuapp.com/";
   const BASE_PATH = `https://jobs.github.com/positions/${jobId}.json`;
   const onlyJob = async () => {
     const dataJob = await fetch(`${PROXY_PATH}${BASE_PATH}`);
     const oneJobData = await dataJob.json();
     console.log(oneJobData);
-    setDescription(oneJobData.description);
+    setDescription(oneJobData);
+  };
+  const informationJob = () => {
+    return {
+      __html: description.description,
+    };
   };
   // API CALL / SET REDUX
   useEffect(() => {
@@ -67,25 +72,24 @@ const JobsInfo = () => {
 
   return (
     <TextJob>
-      <h2>Frontend Engineer</h2>
+      <h2>{description.title}</h2>
       <p className="timeLocation">
         <span>
           <BiWorld></BiWorld>
         </span>
-        Los angeles
+        {description.location}
       </p>
       <p className="timeLocation">
         {" "}
         <span>
           <FiClock></FiClock>
         </span>
-        5 days ago
+        {description.created_at}
       </p>
       <article>
         {/*Job Description */}
         <h3>Description</h3>
-        <p> {description}¿</p>
-        {/* Job Description*/}
+        <div dangerouslySetInnerHTML={informationJob()} className="infoJob" />
 
         {/*Hiring Process */}
         <h3>Hiring Process</h3>

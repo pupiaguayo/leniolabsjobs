@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 // styles SearchBar and Container SearchBar
 export const SearchBar = styled.section`
   height: 25vh;
@@ -60,28 +61,31 @@ export const SearchBar = styled.section`
   }
 `;
 // styles SearchBar and Container SearchBar
-
 const SearchJobs = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert("Function is temporarily unavailable");
+  const [inputValue, setInputValue] = useState("");
+  const dispatch = useDispatch();
+  const searchJob = (e) => {
+    setInputValue(e.target.value);
+  };
+  const submitJob = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: "FILTER_LIST_JOBS",
+      payload: inputValue,
+    });
   };
   return (
     <SearchBar>
       <img src="https://i.ibb.co/SBTKK24/leni-rocket2.png" alt="" />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={submitJob}>
         <input
           type="text"
           className="inputJobs"
           placeholder="Title or Expertise"
+          value={inputValue}
+          onChange={searchJob}
         />
-        <input
-          type="submit"
-          name=""
-          id=""
-          className="inputSubmit"
-          value="Search"
-        />
+        <input type="submit" className="inputSubmit" value="Search" />
       </form>
     </SearchBar>
   );
