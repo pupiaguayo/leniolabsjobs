@@ -16,7 +16,8 @@ export const Sidebar = styled.div`
   }
   .inputSubmit {
     width: 90%;
-    height: 2.5vh;
+    height: auto;
+    padding: 4px;
     margin-top: 1.5vh;
     border-radius: 4px;
     padding: 4px;
@@ -31,6 +32,21 @@ export const Sidebar = styled.div`
       cursor: pointer;
     }
   }
+  .cleanFilters {
+    width: 90%;
+    height: auto;
+    padding: 4px;
+    margin-top: 1.5vh;
+    border-radius: 4px;
+    padding: 4px;
+    background-color: #ff7d5a;
+    color: #283351;
+    border: 1px solid #ff7d5a;
+    font-weight: bold;
+    &:hover {
+      cursor: pointer;
+    }
+  }
   .form-cities {
     display: flex;
     flex-direction: column;
@@ -38,7 +54,8 @@ export const Sidebar = styled.div`
   }
   .inputOtherCountry {
     width: 90%;
-    height: 2.5vh;
+    height: auto;
+    padding: 4px;
     margin-top: 1.5vh;
     border-radius: 4px;
 
@@ -65,10 +82,12 @@ const SearchLocation = () => {
       type: "FILTER_LOCATION_JOBS",
       payload: locationValue,
     });
-    setLocationValue("");
   };
   const searchLocation = (e) => {
     setLocationValue(e.target.value);
+  };
+  const cleanFilters = () => {
+    setLocationValue("");
   };
 
   return (
@@ -88,21 +107,42 @@ const SearchLocation = () => {
           onChange={searchLocation}
         />
         <label className="locale-label">
-          <input type="radio" value="remote" onClick={searchLocation} />
+          <input
+            type="radio"
+            value="remote"
+            onClick={searchLocation}
+            checked={locationValue === "remote"}
+          />
           <span>Remote</span>
         </label>{" "}
         <label className="locale-label">
-          <input type="radio" value="Berlin" onClick={searchLocation} />
+          <input
+            type="radio"
+            value="Berlin"
+            onClick={searchLocation}
+            checked={locationValue === "Berlin"}
+          />
           <span>Berlin</span>
         </label>{" "}
         <label className="locale-label" onClick={searchLocation}>
-          <input type="radio" value="United States" onChange={searchLocation} />
+          <input
+            type="radio"
+            value="United States"
+            onChange={searchLocation}
+            checked={locationValue === "United States"}
+          />
           <span>USA </span>
         </label>{" "}
         <input
           type="submit"
           className="inputSubmit"
           value="Search For Location"
+        />
+        <input
+          type="submit"
+          className="cleanFilters"
+          value="Delete Filter Location"
+          onClick={cleanFilters}
         />
       </form>
     </Sidebar>

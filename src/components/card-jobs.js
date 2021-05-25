@@ -54,12 +54,18 @@ const CardJobs = () => {
   const BASE_PATH = "https://jobs.github.com/positions.json?search=frontend";
   const jobListLocation = useSelector((state) => state.jobListLocation);
   const jobListName = useSelector((state) => state.jobListName);
+  const jobListNameAndLocation = useSelector(
+    (state) => state.jobListNameAndLocation
+  );
   const jobList = useSelector((state) => {
-    if (jobListLocation !== "" && jobListName.length === 0) {
+    if (jobListLocation.length > 0 && jobListName.length === 0) {
       return jobListLocation;
     }
-    if (jobListName.length > 0) {
+    if (jobListLocation.length === 0 && jobListName.length > 0) {
       return jobListName;
+    }
+    if (jobListLocation.length > 0 && jobListName.length > 0) {
+      console.log("doble filtro");
     }
     return state.jobList;
   });
@@ -75,6 +81,7 @@ const CardJobs = () => {
   useEffect(() => {
     obtenerJobs();
   }, [dispatch]);
+  console.log(jobList);
 
   // Function React Paginate
   const page = 5;
