@@ -17,11 +17,15 @@ export const Header = styled.header`
   }
 `;
 // styles Header Page
+const refreshPage = () => {
+  window.location.reload();
+  console.log("page to reload");
+};
 
 const HeaderView = () => {
   return (
     <Header>
-      <Link to="/" style={{ textDecoration: "none" }}>
+      <Link to="/" onClick={refreshPage} style={{ textDecoration: "none" }}>
         <h1>LenioJobs</h1>
       </Link>
     </Header>

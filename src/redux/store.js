@@ -4,7 +4,7 @@ const initialState = {
   jobListName: [],
   jobListLocation: [],
 };
-function reducer(state, action) {
+const reducer = (state, action) => {
   switch (action.type) {
     case "SET_LIST_JOBS": {
       return { ...state, jobList: action.payload };
@@ -22,7 +22,6 @@ function reducer(state, action) {
       );
       return { ...state, jobListName };
     }
-
     case "FILTER_LOCATION_JOBS": {
       let listLoc;
       if (state.jobListName.length > 0) {
@@ -39,13 +38,7 @@ function reducer(state, action) {
       return state;
     }
   }
-}
-const store = createStore(
-  reducer,
-  initialState
-  // reducers,
-  // {},
-  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+};
+const store = createStore(reducer, initialState);
 
 export default store;

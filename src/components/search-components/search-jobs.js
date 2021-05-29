@@ -88,10 +88,9 @@ const SearchJobs = () => {
       type: "FILTER_LIST_JOBS",
       payload: inputValue,
     });
-  };
-  const cleanValue = () => {
     setInputValue("");
   };
+
   return (
     <SearchBar>
       <img src="https://i.ibb.co/SBTKK24/leni-rocket2.png" alt="" />
@@ -103,12 +102,6 @@ const SearchJobs = () => {
           value={inputValue}
           onChange={searchJob}
         />
-        <button className="close" onClick={cleanValue}>
-          {" "}
-          <span>
-            <FaRegTimesCircle />
-          </span>
-        </button>
         <input type="submit" className="inputSubmit" value="Search" />
       </form>
     </SearchBar>

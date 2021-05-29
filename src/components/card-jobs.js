@@ -55,14 +55,13 @@ const CardJobs = () => {
   const jobListLocation = useSelector((state) => state.jobListLocation);
   const jobListName = useSelector((state) => state.jobListName);
   const jobList = useSelector((state) => {
-    if (jobListLocation !== "" && jobListName === "") {
+    if (jobListLocation.length > 0 && jobListName.length === 0) {
       return jobListLocation;
     }
-    if (jobListLocation === "" && jobListName !== "") {
+    if (jobListLocation.length === 0 && jobListName.length > 0) {
       return jobListName;
     }
-
-    if (jobListLocation !== "" && jobListName.length !== "") {
+    if (jobListLocation.length > 0 && jobListName.length > 0) {
       return jobListLocation;
     }
     return state.jobList;
@@ -75,6 +74,7 @@ const CardJobs = () => {
       payload: elementos,
     });
   };
+
   // API CALL / SET REDUX
 
   useEffect(() => {
