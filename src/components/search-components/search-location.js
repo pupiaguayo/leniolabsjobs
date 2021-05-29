@@ -87,6 +87,10 @@ const SearchLocation = () => {
     setLocationValue(e.target.value);
   };
   const cleanFilters = () => {
+    dispatch({
+      type: "FILTER_LOCATION_JOBS",
+      payload: "",
+    });
     setLocationValue("");
   };
 

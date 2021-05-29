@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import { FaRegTimesCircle } from "react-icons/fa";
 // styles SearchBar and Container SearchBar
 export const SearchBar = styled.section`
   height: 25vh;
@@ -26,7 +27,7 @@ export const SearchBar = styled.section`
       transform: rotate(-45deg);
     }
     50% {
-      transform: translateY(110vh);
+      transform: translateY(80vh);
     }
     75% {
       transform: rotate(-45deg);
@@ -40,6 +41,20 @@ export const SearchBar = styled.section`
     border-radius: 8px;
     margin-right: 1vw;
     border: 1px solid gray;
+    outline: none;
+  }
+  .close {
+    position: absolute;
+    right: 33.5vw;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    color: #ff7d5a;
+    background-color: transparent;
+  }
+  .close:hover {
+    cursor: pointer;
   }
   .inputSubmit {
     height: auto;
@@ -74,6 +89,9 @@ const SearchJobs = () => {
       payload: inputValue,
     });
   };
+  const cleanValue = () => {
+    setInputValue("");
+  };
   return (
     <SearchBar>
       <img src="https://i.ibb.co/SBTKK24/leni-rocket2.png" alt="" />
@@ -85,6 +103,12 @@ const SearchJobs = () => {
           value={inputValue}
           onChange={searchJob}
         />
+        <button className="close" onClick={cleanValue}>
+          {" "}
+          <span>
+            <FaRegTimesCircle />
+          </span>
+        </button>
         <input type="submit" className="inputSubmit" value="Search" />
       </form>
     </SearchBar>

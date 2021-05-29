@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { BiWorld } from "react-icons/bi";
 import { FiClock } from "react-icons/fi";
-
 // styles container Cards
 export const TextJob = styled.div`
   color: white;
