@@ -93,7 +93,9 @@ const SearchLocation = () => {
     });
     setLocationValue("");
   };
-
+  const reloadJobs = () => {
+    window.location.reload();
+  };
   return (
     <Sidebar>
       <form action="" className="form-fulltime">
@@ -147,6 +149,12 @@ const SearchLocation = () => {
           className="cleanFilters"
           value="Delete Filter Location"
           onClick={cleanFilters}
+        />
+        <input
+          type="submit"
+          className="cleanFilters"
+          value="Reload list Jobs"
+          onClick={reloadJobs}
         />
       </form>
     </Sidebar>
