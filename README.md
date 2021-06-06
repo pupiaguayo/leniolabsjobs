@@ -27,10 +27,10 @@ React, Redux, Styled Components
     
 ## Lessons Learned
 
- -Using styled Components
- -Creating pagination component from scratch
- -Solution API CORS problems
+- Creating pagination component from scratch
+- Solution API CORS problems
 - CSS Animations
+- Using styled Components
   
 ## Support
 
