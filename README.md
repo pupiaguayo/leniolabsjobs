@@ -13,18 +13,9 @@
 To deploy this project run
 
 ```bash
-  npm run deploy
+  npm run build
 ```
 
-  
-## Installation 
-
-Install my-project with npm
-
-```bash 
-  npm install my-project
-  cd my-project
-```
     
 ## Tech Stack
 
